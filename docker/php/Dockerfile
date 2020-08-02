@@ -13,6 +13,9 @@ RUN apt-get update -yqq && apt-get install --no-install-recommends -yqq apt-tran
     apt-get install --no-install-recommends -yqq php7.4-cli php7.4-mysql php7.4-xmlrpc php7.4-xml
 
 COPY ./bin/* /usr/local/bin/
+
+RUN chmod +x ./usr/local/bin/*
+
 RUN docker-build-composer
 
 ENTRYPOINT ["docker-entrypoint"]
