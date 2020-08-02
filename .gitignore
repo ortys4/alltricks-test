@@ -1,0 +1,5 @@
+.idea/
+vendor/
+
+docker-compose.override.yml
+composer.lock

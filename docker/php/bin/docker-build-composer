@@ -1,0 +1,8 @@
+wget https://getcomposer.org/installer -O installer
+php installer --version 1.9.1 --install-dir=/usr/local/bin --filename=composer
+rm -f installer
+
+composer config --global secure-http false
+composer config --global cache-dir /tmp/composer
+
+chmod -R 777 /composer

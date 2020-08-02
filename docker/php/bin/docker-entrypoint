@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+# If no argument on run, launch a background process to force docker to not stop the container
+# Else execute php
+if [ -z "$1" ]; then
+    trap 'exit 0' SIGTERM
+    tail -f /dev/null & wait ${!}
+else
+    if [ "${1#-}" != "$1" ]; then
+        set -- php "$@"
+    fi
+    exec "$@"
+fi

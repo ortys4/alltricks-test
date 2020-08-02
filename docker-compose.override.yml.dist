@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  apache:
+    networks:
+      - default
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.alltricks.rule=Host(`alltricks.docker.localhost`)"
+
+networks:
+  web:
+    name: web

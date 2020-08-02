@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  database:
+    image: library/mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: 0
+      MYSQL_RANDOM_ROOT_PASSWORD: 0
+      MYSQL_DATABASE: alltricks
+      MYSQL_USER: alltricks
+      MYSQL_PASSWORD: alltricks
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+
+  php:
+    build:
+      context: docker/php
+    volumes:
+      - ./:/app
+    working_dir: /app
+
+  apache:
+    build:
+      context: docker/apache
+    volumes:
+      - ./:/var/www/html/
+
